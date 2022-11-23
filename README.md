@@ -1,3 +1,3 @@
 # ms-dailycodebuffer
-Exercises for 
-https://www.youtube.com/watch?v=BnknNTN8icw
+# Exercises for Microservices using SpringBoot | Full Example
+# https://www.youtube.com/watch?v=BnknNTN8icw
