@@ -14,7 +14,8 @@ spring:
           uri: lb://DEPARTMENT-SERVICE
           predicates:
             - Path=/departments/**
-
+  config:
+    import: optional:configserver:http://localhost:9296
 management:
   health:
     circuitbreakers:
