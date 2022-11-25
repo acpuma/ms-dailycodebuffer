@@ -3,6 +3,7 @@ package com.dailycodebuffer.user.controller;
 import com.dailycodebuffer.user.VO.ResponseTemplateVO;
 import com.dailycodebuffer.user.entity.User;
 import com.dailycodebuffer.user.service.UserService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +27,13 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
+    @CircuitBreaker(name = "DEPARTMENT-SERVICE", fallbackMethod = "serviceFallback")
     public ResponseTemplateVO getUserWithDepartment(@PathVariable("id") Long userId) {
         log.info("Inside getUserWithDepartment in UserController");
         return userService.getUserWithDepartment(userId);
+    }
+
+    public ResponseTemplateVO serviceFallback(Long userId, Exception ex) {
+        return new ResponseTemplateVO();
     }
 }
