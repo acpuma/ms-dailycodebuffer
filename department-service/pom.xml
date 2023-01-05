@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.dailycodebuffer</groupId>
 	<artifactId>department-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>department-service</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -85,6 +85,27 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.40.3</version>
+				<configuration>
+					<images>
+						<image>
+							<name>acpuma/${project.name}:${project.version}</name>
+						</image>
+					</images>
+				</configuration>
+				<executions>
+					<execution>
+						<id>build</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
